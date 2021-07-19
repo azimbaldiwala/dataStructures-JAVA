@@ -124,6 +124,7 @@ class Stack{
         if(len <= (size/2)/2){
             size /= 2;
         }
+        
 
         // new array for stack 
         int newStack[] = new int[size];
@@ -285,6 +286,132 @@ class LinkedLists{
 }
 
 
+class Queue{
+
+    int queue[] = new int[5]; //Default size of the queue.
+    int front = -1;
+    int rear = -1;
+    int size = 5; // Size of the queue.
+
+    
+    
+    
+
+    // Expands the size of the queue.
+
+    private void expand(){
+        int len = sizeof();
+        int newQueue[] = new int[size * 2];
+        System.arraycopy(queue, 0, newQueue, 0, len);
+        queue = newQueue;
+        size *= 2;
+    }
+
+    public boolean isEmpty()
+    {
+        if(front ==  rear)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public int sizeof()
+    {
+        return rear - front;
+    }
+
+
+    public void enqueue(int element)
+    {
+
+        if(rear == size)
+        {
+            expand();
+        }
+
+        rear++; 
+        queue[rear] = element;
+        System.out.println("Element added to the queue");
+
+    }
+
+    public void dequeue()
+    {
+        if(front == -1 && rear == -1)
+        {
+            System.out.println("No Elements to remove");
+        }
+
+        else
+        {
+            
+            int element = queue[front];
+            front++;
+
+            System.out.println("Element " + element + " was removed");
+        }
+
+    }
+
+    public int peek()
+    {
+        
+        int element = queue[front];
+        System.out.println(element);
+        return element;
+
+    }
+
+    public boolean isPresent(int element)
+    {
+        for(int i = front; i < rear; i++)
+        {
+            if(queue[i] == element)
+            {
+                System.out.println(element + " is present in the queue");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+     public void show()
+    {
+        for(int i = front; i < rear; i++)
+        {
+            System.out.println(queue[i]);
+        }
+    }
+
+
+    
+    // Reduces the size of the stack.
+
+    private void shrink(){
+
+        int len =  sizeof();
+        if(len <= (size/2)/2){
+            size /= 2;
+        }
+
+        // new array for stack 
+        int newQueue[] = new int[size];
+        // Copying all the values to new stack.
+        System.arraycopy(queue, 0, newQueue, 0, len);
+        // Rereffrencing stack.
+        queue = newQueue;       
+    }
+    
+
+
+
+
+}
+
 
 
 class dataStructures{
@@ -305,7 +432,7 @@ class dataStructures{
         /*
         // Linked List example...
 
-         LinkedLists list = new LinkedLists();
+        LinkedLists list = new LinkedLists();
         list.insert(10);
         list.insert(55);
         list.insert(35);
@@ -316,6 +443,23 @@ class dataStructures{
         
         */
        
+       /*
+
+       // Queue Example 
+
+       *** There are still few bugs left to fix here *** 
+       --> Shrink and expand witjh dequeue is to be fixed!!!
+
+       Queue queue = new Queue();
+       queue.enqueue(10);
+       queue.enqueue(50);
+       queue.enqueue(60);
+       queue.dequeue();
+       queue.isEmpty();
+       queue.isPresent(50);
+       queue.show();
+
+    */ 
 
     }
 }
